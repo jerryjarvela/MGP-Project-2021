@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: AtlasTexture
-  m_Shader: {fileID: -6465566751694194690, guid: a976e00937a7c3545934b0e77eae4a75,
+  m_Shader: {fileID: -6465566751694194690, guid: 5eb907b703b97514ea8d9a7ac594f2af,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -34,6 +34,10 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_360CD7C4:
+        m_Texture: {fileID: 2800000, guid: 4229d4d685c10a749bc8af9e51bfeb20, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_6085fdd71d9348f690db3c4cb1c3141a:
         m_Texture: {fileID: 2800000, guid: 4229d4d685c10a749bc8af9e51bfeb20, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -65,9 +69,24 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_1677ed1e9e5a4671a6421884eca7551f: 0.005
     - Vector1_253A888: 1
     - Vector1_995B999E: 0.005
+    - Vector1_ae2541e0082942e79b30d4cfc3d031cd: 0
+    - Vector1_b068c902f6af4a23b24500711c769e64: 1
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -95,3 +114,4 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - snowOffset: {r: 0, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []
