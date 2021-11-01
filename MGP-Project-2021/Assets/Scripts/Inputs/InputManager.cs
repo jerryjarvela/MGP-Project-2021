@@ -15,6 +15,9 @@ public class InputManager : MonoBehaviour
 
     // Action scheme from generated script
     private RunnerInputAction _actionScheme;
+    
+    // Configs
+    [SerializeField] private float sqrSqipeDeadzone = 50.0f;
 
     #region public properties
     
@@ -64,6 +67,11 @@ public class InputManager : MonoBehaviour
         SetupControl();
     }
 
+    private void LateUpdate()
+    {
+        ResetInputs();
+    }
+
     public void OnEnable()
     {
         _actionScheme.Enable();
@@ -86,23 +94,61 @@ public class InputManager : MonoBehaviour
 
     }
 
+    private void ResetInputs()
+    {
+        tap = swipeLeft = swipeRight = swipeUp = swipeDown = false;
+    }
+    
     private void OnEndDrag(InputAction.CallbackContext ctx)
     {
-        throw new NotImplementedException();
+        Vector2 delta = touchPosition - startDrag;
+        float sqrDistance = delta.sqrMagnitude;
+
+        // Confirmed swipe
+        if (sqrDistance > sqrSqipeDeadzone)
+        {
+            float x = Mathf.Abs(delta.x);
+            float y = Mathf.Abs(delta.y);
+
+            if (x > y) // Left or right
+            {
+                if (delta.x > 0)
+                {
+                    swipeRight = true;
+                }
+                else
+                {
+                    swipeLeft = true;
+                }
+            }
+            else // Up or down
+            {
+                if (delta.y > 0)
+                {
+                    swipeUp = true;
+                }
+                else
+                {
+                    swipeDown = true;
+                }
+            }
+        }
+        
+        startDrag = Vector2.zero;
     }
 
     private void OnStartDrag(InputAction.CallbackContext ctx)
     {
-        throw new NotImplementedException();
+        startDrag = touchPosition;
     }
 
     private void OnPosition(InputAction.CallbackContext ctx)
     {
-        throw new NotImplementedException();
+        touchPosition = ctx.ReadValue<Vector2>();
     }
 
     private void OnTap(InputAction.CallbackContext ctx)
     {
-        
+        tap = true;
     }
 }
