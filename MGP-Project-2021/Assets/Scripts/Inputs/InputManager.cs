@@ -17,7 +17,7 @@ public class InputManager : MonoBehaviour
     private RunnerInputAction _actionScheme;
     
     // Configs
-    [SerializeField] private float sqrSqipeDeadzone = 50.0f;
+    [SerializeField] private float sqrSwipeDeadzone = 50.0f;
 
     #region public properties
     
@@ -102,10 +102,10 @@ public class InputManager : MonoBehaviour
     private void OnEndDrag(InputAction.CallbackContext ctx)
     {
         Vector2 delta = touchPosition - startDrag;
-        float sqrDistance = delta.sqrMagnitude;
+        float sqrDistance = delta.sqrMagnitude; // normal magnitude?
 
         // Confirmed swipe
-        if (sqrDistance > sqrSqipeDeadzone)
+        if (sqrDistance > sqrSwipeDeadzone)
         {
             float x = Mathf.Abs(delta.x);
             float y = Mathf.Abs(delta.y);
