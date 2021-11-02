@@ -17,11 +17,13 @@ public class PlayerMotor : MonoBehaviour
     public float terminalVelocity = 20.0f;
 
     public CharacterController controller;
+    public Animator anim;
     private BaseState _state;
 
     private void Start()
     {
         controller = GetComponent<CharacterController>();
+        anim = GetComponent<Animator>();
         _state = GetComponent<RunningState>();
         _state.Construct();
     }
@@ -42,6 +44,41 @@ public class PlayerMotor : MonoBehaviour
         _state = s;
         _state.Construct();
     }
+
+    public void ApplyGravity()
+    {
+        verticalVelocity -= gravity * Time.deltaTime;
+        if (verticalVelocity < -terminalVelocity)
+        {
+            verticalVelocity = -terminalVelocity;
+        }
+    }
+    
+    public float SnapToLane()
+    {
+        float returnValue = 0.0f;
+
+        if (transform.position.x != (currentLane * distanceInBetweenLanes))
+        {
+            float deltaToDesiredPosition = (currentLane * distanceInBetweenLanes) - transform.position.x;
+            returnValue = (deltaToDesiredPosition > 0) ? 1 : -1;
+            returnValue *= baseSidewaySpeed;
+
+            // Calculate exact distance to travel
+            float actualDistance = returnValue * Time.deltaTime;
+
+            if (Mathf.Abs(actualDistance) > Mathf.Abs(deltaToDesiredPosition))
+            {
+                returnValue = deltaToDesiredPosition * (1 / Time.deltaTime);
+            }
+        }
+        else
+        {
+            returnValue = 0;
+        }
+        
+        return returnValue;
+    }
     
     private void UpdateMotor()
     {
@@ -56,5 +93,9 @@ public class PlayerMotor : MonoBehaviour
         
         // Move the player
         controller.Move(moveVector * Time.deltaTime);
+        
+        // Feed animator values
+        anim?.SetBool("IsGrounded", isGrounded);
+        anim?.SetFloat("Speed", Mathf.Abs(moveVector.z));
     }
 }

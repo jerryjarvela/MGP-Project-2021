@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class RunningState : BaseState
 {
+    public override void Construct()
+    {
+        motor.verticalVelocity = 0; // reset velocity on ground
+    }
+
     public override Vector3 ProcessMotion()
     {
         Vector3 move = Vector3.zero;
 
-        move.x = 0;
+        move.x = motor.SnapToLane();
         move.y = -1.0f;
         move.z = motor.baseRunSpeed;
         
@@ -33,7 +38,17 @@ public class RunningState : BaseState
         {
             // Change to jumping state
             // TODO
-            //motor.ChangeState(GetComponent<JUmpingState>());
+            motor.ChangeState(GetComponent<JumpingState>());
+        }
+
+        if (!motor.isGrounded)
+        {
+            motor.ChangeState(GetComponent<FallingState>());
+        }
+        
+        if (InputManager.Instance.SwipeDown)
+        {
+            motor.ChangeState(GetComponent<SlidingState>());
         }
     }
 }
