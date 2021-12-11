@@ -20,9 +20,9 @@ public class @RunnerInputAction : IInputActionCollection, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Tap/Click"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""944a3f3a-73d8-4d8d-affc-289618122ff0"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Touch"",
                     ""processors"": """",
                     ""interactions"": ""Press""
                 },
@@ -66,7 +66,7 @@ public class @RunnerInputAction : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""9e405516-60d6-4dc0-b017-712cdec8be83"",
-                    ""path"": ""<Touchscreen>/touch*/tap"",
+                    ""path"": ""<Touchscreen>/touch0"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mobile"",
@@ -110,7 +110,7 @@ public class @RunnerInputAction : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""00b35938-75ee-4cad-aebf-2d42546740af"",
-                    ""path"": ""<Touchscreen>/touch*/press"",
+                    ""path"": ""<Touchscreen>/press"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mobile"",
@@ -132,7 +132,7 @@ public class @RunnerInputAction : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e5f08a16-45d0-4a9c-82e6-9f94598f4024"",
-                    ""path"": ""<Touchscreen>/touch*/press"",
+                    ""path"": ""<Touchscreen>/press"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mobile"",
